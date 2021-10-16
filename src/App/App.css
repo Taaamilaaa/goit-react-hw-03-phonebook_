@@ -18,3 +18,13 @@
   justify-content: center;
   color: rgba(0, 0, 0, 0.774);
 }
+.notification {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 40px;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  color: rgba(110, 14, 14, 0.774);
+}

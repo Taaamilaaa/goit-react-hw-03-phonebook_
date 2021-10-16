@@ -49,7 +49,15 @@ class App extends React.Component {
       contacts: prevState.contacts.filter((contact) => contact.id !== id),
     }));
   };
-
+  
+  componentDidUpdate() {
+    const contactsJson = JSON.stringify(this.state.contacts);
+  localStorage.setItem('contacts', contactsJson)
+  }
+  componentDidMount() {
+    const contacts = JSON.parse(localStorage.getItem('contacts'));
+    this.setState({contacts: contacts})
+  }
   render = () => {
     const { filter, contacts } = this.state;
     const contactsFilter = this.contactsFilter();
@@ -62,7 +70,7 @@ class App extends React.Component {
          {contacts.length > 1 && (<Filter value={filter} onChange={this.filterChange} />)}
         {contacts.length > 0 
         ? (<ContactList contacts={contactsFilter} clickOnBtn={this.onBtnDelClick}/>)
-        : (<p>Please add your contacts.</p>)}
+        : (<p className= "notification">Please add your contacts.</p>)}
       </div>
     );
   };
