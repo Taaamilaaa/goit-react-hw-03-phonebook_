@@ -50,10 +50,13 @@ class App extends React.Component {
     }));
   };
   
-  componentDidUpdate() {
-    const contactsJson = JSON.stringify(this.state.contacts);
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.contacts !== prevState.contacts) {
+  const contactsJson = JSON.stringify(this.state.contacts);
   localStorage.setItem('contacts', contactsJson)
   }
+    }
+    
   componentDidMount() {
     const contacts = JSON.parse(localStorage.getItem('contacts'));
     this.setState({contacts: contacts})
